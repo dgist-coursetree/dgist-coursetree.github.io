@@ -223,34 +223,11 @@ function stepOk(step) {
     }
     if(c<1) { alert("전공 트랙이 선택되지 않았습니다"); return false; }
     if(c>2) { alert("전공 트랙은 최대 2개까지만 선택하세요"); return false; }
-    //document.getElementById('step_2').style.display='';
-
-  // } else if(step==2) {
-  //   var c=0;
-  //   for(i=1;i<4;i++) {
-  //     if(fe['c2_'+i].checked) c++;
-  //   }
-  //   if(c<1) { alert("수학과목이 선택되지 않았습니다."); return false; }
-
-  //   c=0;
-  //   for(i=1;i<4;i++) {
-  //     if(fe['c3_'+i].checked) c++;
-  //   }
-  //   if(c<1) { alert("기초공학과목이 선택되지 않았습니다."); return false; }
-
-  //   c=0;
-  //   for (i=1;i<4;i++) {
-  //     if(fe['c4_'+i].checked) c++;
-  //   }
-  //   if(c<2) { alert("1학년 2학기 기초과학은 2과목 이상 선택해야 합니다."); return false; }
-    
-  //   c=0;
-  //   for(i=1;i<3;i++) {
-  //     if(fe['c5_'+i].checked) c++;
-  //   }
-  //   if(c<1) { alert("물리실험과목이 선택되지 않았습니다."); return false; }
+   
 
     document.getElementById('step_3').style.display='block';
+
+    
     mkData(); //실행배열생성 
     drawSubj(); //과목록목
     drawCboxs();//학기별 과목 드로우
@@ -261,7 +238,20 @@ function stepOk(step) {
       $(".selbox1 select").children().prop("selected",false);
       $(sel_o).prop("selected",true);
     });
+    
+  } 
+}
+
+function re_Run() {
+  var rl;
+  rl = confirm("모든 CourseTree 항목을 삭제하고 초기화하시겠습니까? 데이터는 복구할 수 없습니다.");
+  if(rl){
+    document.cookie='';
+    window.location.reload();
+  } else {
+    return false;
   }
+  
 }
 
 function drawSubj() {
@@ -371,9 +361,10 @@ function saveData() {
     s+='",';
   }
   s+='tmp:"" }';
-  alert('s:'+s);// 3600*24
+  //alert('s:'+s);// 3600*24
   document.cookie=encodeURIComponent('gdata')+'='+encodeURIComponent(s)+'max-age='+(60*60*24*365)+';path=/;';
-  alert('ck:'+document.cookie);//
+  //alert('ck:'+document.cookie);//
+  alert("저장완료")
 }
 
 function getData() {
@@ -450,12 +441,13 @@ $(function() {
   <label for="c1_7"><input type="checkbox" name="c1_7" id="c1_7" value="11"/>컴퓨터공학</label>
   <label for="c1_8"><input type="checkbox" name="c1_8" id="c1_8" value="12"/>화학공학</label>
  <hr/>
- <button onclick="stepOk(1)">다음단계 &gt;</button>
+ <button onclick="stepOk(1); this.disabled=true;">다음단계 &gt;</button>
+ <button onclick="re_Run()">초기화</button>
  <hr/>
 </div><!--/step_1-->
 
-<div id="step_2" style="display:none;">
- <!-- <h3>수학과목 선택 (1과목 이상 선택)</h3> 
+<!-- <div id="step_2" style="display:none;">
+ <h3>수학과목 선택 (1과목 이상 선택)</h3> 
   <label for="c2_1"><input type="checkbox" name="c2_1" id="c2_1"/>선형대수학</label>
   <label for="c2_2"><input type="checkbox" name="c2_2" id="c2_2"/>확통</label>
   <label for="c2_3"><input type="checkbox" name="c2_3" id="c2_3"/>복합공합수학</label>
@@ -474,10 +466,11 @@ $(function() {
   <label for="c5_1"><input type="checkbox" name="c5_1" id="c5_1"/>고전역학실험</label>
   <label for="c5_2"><input type="checkbox" name="c5_2" id="c5_2"/>전자기학실험</label>
   <br/>
-  <hr/> -->
+  <hr/>
  <button onclick="stepOk(2)">다음단계 &gt;</button>
  <hr/>
-</div><!--/step_2-->
+</div> -->
+<!--/step_2-->
 
 <div id="step_3" style="display:none;">
  <h3>학기별 과목 담기</h3>
@@ -557,6 +550,7 @@ $(function() {
  </td></tr></table>
 
  <button onclick="saveData()">저장</button>
+ 
 
 </div><!-- <!—-step_3—> -->
 
