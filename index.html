@@ -325,7 +325,7 @@ function addSubj(n) {
  // alert('v:'+o.val()+' t:'+o.text());
   var idx=getSubjIndex(o.val());
   if(idx<0) return;
-  var gf=a_subj[idx][5];
+  var gf=a_subj[idx][4];
   if((n%2) && gf==1) { alert('가을학기 과목은 봄학기에 수강할 수 없습니다.'); return; }
   if((n%2)==0 && gf==0) { alert('봄학기 과목은 가을학기에 수강할 수 없습니다.'); return; }
 
