@@ -271,7 +271,7 @@ function drawSubj() {
     var b=a_subj0[i];
     s='<option value="'+a[0]+'">'+a[1]+'</option>';
     if(b[3]==0) {
-      if(a[3]==3) { s_requiredCourse+=s; c1++; //전공필수
+      if(a[3]>=3) { s_requiredCourse+=s; c1++; //전공필수
       } else if(a[3]==2) { s_selectiveCourse+=s; c2++; //전공선택
       } else if(a[3]==0) { s_notMyMajor+=s; c4++;//비전공
       }
