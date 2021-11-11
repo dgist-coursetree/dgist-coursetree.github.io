@@ -245,7 +245,8 @@ function stepOk(step) {
       $(".selbox1 select").children().prop("selected",false);
       $(sel_o).prop("selected",true);
     });
-    
+    const target = document.getElementById('nextbutton');
+    target.disabled = true;
   } 
 }
 
@@ -446,7 +447,7 @@ $(function() {
   <label for="c1_7"><input type="checkbox" name="c1_7" id="c1_7" value="11"/>컴퓨터공학</label>
   <label for="c1_8"><input type="checkbox" name="c1_8" id="c1_8" value="12"/>화학공학</label>
  <hr/>
- <button onclick="stepOk(1); this.disabled=true;">다음단계 &gt;</button>
+ <button id="nextbutton" onclick="stepOk(1);">다음단계 &gt;</button>
  <button onclick="re_Run()">초기화</button>
  <hr/>
 </div><!--/step_1-->
