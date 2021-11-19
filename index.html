@@ -322,7 +322,7 @@ function drawCbox1(n) {
   var s='';
   s+='<div class="cbox" id="cbox_'+n+'"><h4>'+Math.floor((n-1)/2+1)+'학년 '+((n%2==1)?1:2)+'학기 <button onclick="addSubj('+n+')">추가+</button><button onclick="delSubj('+n+')">삭제-</button></h4>';
   s+='<select name="cbox_'+n+'" size="10" style="overflow:scroll;height:162px;width:240px;"></select>';
-  s+='<div>선택학점:<span id="credit_'+n+'">0</span></div>';
+  s+='<div style="text-align:right">해당학기 수강학점: <span id="credit_'+n+'">0</span>/21&nbsp;&nbsp;&nbsp;</div>';
   s+='</div>';
   return s;
 }
