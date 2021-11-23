@@ -51,7 +51,7 @@
   list-style-type: none; margin: 0; padding: 0;
   border:1px outset #555;
   overflow:scroll;
-  height:162px;
+  height:300px;
   width:240px;
 }
 .cbox li {
@@ -381,6 +381,7 @@ function addSubj(n) {
   $('#cbox_'+n+' ul').append('<li my-data="'+o.val()+'"><span onclick="delSubj(this,'+n+')">X</span>'+o.text()+'</li>');
   o.attr("disabled","disabled").prop("selected",false);
   sumCredit(n);
+  sumAllCredit();
 }
 
 //학기별 과목목록에서 특정과목을 제거
@@ -389,6 +390,7 @@ function delSubj(obj,n) {
   $(".selbox1 select option[value='"+$(o).attr('my-data')+"']").attr('disabled',false);
   o.remove();
   sumCredit(n);
+  sumAllCredit();
 }
 /*
 function delSubj(n) {
@@ -413,6 +415,17 @@ function sumCredit(n) { //n: 학기
    //배열내에 학점 더하기
    //학점 디스플레이
    $("#cbox_"+n+" ul").sortable();//"refresh");
+   
+   return sum;
+}
+
+function sumAllCredit() {
+  var sum=0, i;
+  for(i=1;i<13;i++){
+    sum+=sumCredit(i);
+  }
+  $("#allcredit1").text(sum);
+  $("#allcredit2").text(sum);
 }
 
 function saveData() { 
@@ -498,7 +511,7 @@ $(function() {
 <h4>크롬이 아닌 다른 브라우저에서는 사용이 불편할 수 있습니다.</h4>
 <a href='https://github.com/dgist-coursetree/dgist-coursetree.github.io/' target='_blank'>Github Repository 보기</a>
 <h3 style='text-align:right'>문의는 다음 연락처로 해주세요: prkhnyng@dgist.ac.kr (기초학부 박한영)</h3>
-<h3 style='text-align:right'>Last Updated: 11/20, 2021</h3>
+<h3 style='text-align:right'>Last Updated: 11/24, 2021</h3>
 
 
 <form name="f1" onsubmit="return false">
@@ -620,7 +633,8 @@ $(function() {
 
   <h3>학기별 수강과목</h3>
   <div id="cbox_a"></div>
- 
+  <div style="text-align:right;">수강 학점(20학번): <span id="allcredit1">0</span>/134</div>
+  <div style="text-align:right;">수강 학점(21학번 이후): <span id="allcredit2">0</span>/130</div>
  </td></tr></table>
 
  <button onclick="saveData()">저장</button>
