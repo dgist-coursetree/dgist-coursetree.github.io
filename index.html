@@ -270,6 +270,7 @@ function stepOk(step) {
     mkData(); //실행배열생성 
     drawSubj(); //과목록목
     drawCboxs();//학기별 과목 드로우
+    checkTrack();
 
     $(".selbox1 select").children().prop("selected",false);
     $(".selbox1 select").children().click(function(evt) {
@@ -346,6 +347,7 @@ function drawCbox1(n) { //n:학년/학기 구분값
   s+='<div class="cbox" id="cbox_'+n+'"><h4>'+Math.floor((n-1)/2+1)+'학년 '+((n%2==1)?1:2)+'학기 <button onclick="addSubj('+n+')">추가+</button><!--button onclick="delSubj('+n+')">삭제-</button--></h4>';
   s+='<ul></ul>';
   s+='<div style="text-align:right">해당학기 수강학점: <span id="credit_'+n+'">0</span>/21&nbsp;&nbsp;&nbsp;</div>';
+  s+='<div style="text-align:right">해당학기 수강전공학점: <span id="majorcredit_'+n+'">0</span>&nbsp;&nbsp;&nbsp;</div>'
   s+='</div>';
   return s;
 }
@@ -381,7 +383,9 @@ function addSubj(n) {
   $('#cbox_'+n+' ul').append('<li my-data="'+o.val()+'"><span onclick="delSubj(this,'+n+')">X</span>'+o.text()+'</li>');
   o.attr("disabled","disabled").prop("selected",false);
   sumCredit(n);
+  sumMajor(n);
   sumAllCredit();
+  sumAllMajor();
 }
 
 //학기별 과목목록에서 특정과목을 제거
@@ -390,7 +394,9 @@ function delSubj(obj,n) {
   $(".selbox1 select option[value='"+$(o).attr('my-data')+"']").attr('disabled',false);
   o.remove();
   sumCredit(n);
+  sumMajor(n);
   sumAllCredit();
+  sumAllMajor();
 }
 /*
 function delSubj(n) {
@@ -418,6 +424,111 @@ function sumCredit(n) { //n: 학기
    
    return sum;
 }
+
+function checkTrack() {
+  var i, l=a_subj0.length, a, fe=document.forms['f1'].elements;
+  var fn1=0, fn2=0;
+  for(i=1;i<9;i++) {
+    if(fe['c1_'+i].checked) { 
+      if(fn1<1) fn1=+fe['c1_'+i].value; 
+      else fn2=+fe['c1_'+i].value; 
+    }
+  }
+  var majorArray;
+  majorArray = [+fn1, +fn2];
+  if(fn1==5) {
+    $("#track1name").text("물리학트랙 수강학점: ");
+  } else if(fn1==6) {
+    $("#track1name").text("화학트랙 수강학점: ");
+  } else if(fn1==7) {
+    $("#track1name").text("생명과학트랙 수강학점: ");
+  } else if(fn1==8) {
+    $("#track1name").text("기계공학트랙 수강학점: ");
+  } else if(fn1==9) {
+    $("#track1name").text("재료공학트랙 수강학점: ");
+  } else if(fn1==10) {
+    $("#track1name").text("전자공학트랙 수강학점: ");
+  } else if(fn1==11) {
+    $("#track1name").text("컴퓨터공학트랙 수강학점: ");
+  } else if(fn1==12) {
+    $("#track1name").text("화학공학트랙 수강학점: ");
+  }
+  $("#track1credit").text("0/27");
+  if(fn2>0) {
+    if(fn2==5) {
+      $("#track2name").text("물리학트랙 수강학점: ");
+    } else if(fn2==6) {
+      $("#track2name").text("화학트랙 수강학점: ");
+    } else if(fn2==7) {
+      $("#track2name").text("생명과학트랙 수강학점: ");
+    } else if(fn2==8) {
+      $("#track2name").text("기계공학트랙 수강학점: ");
+    } else if(fn2==9) {
+      $("#track2name").text("재료공학트랙 수강학점: ");
+    } else if(fn2==10) {
+      $("#track2name").text("전자공학트랙 수강학점: ");
+    } else if(fn2==11) {
+      $("#track2name").text("컴퓨터공학트랙 수강학점: ");
+    } else if(fn2==12) {
+      $("#track2name").text("화학공학트랙 수강학점: ");
+    }
+    $("#track2credit").text("0/27");
+    $("#duplicated").text("중복된 학점: ");
+    $("#dupcredit").text("0/27");
+  
+  }
+  return majorArray;  
+}
+
+function sumMajor(n) {
+  var sum1=0, sum2=0, dupsum=0, idx, i, os=$('#cbox_'+n+' ul li'), l=os.length;
+  var track1, track2;
+  track1 = checkTrack()[0];
+  track2 = checkTrack()[1];
+  for(i=0;i<l;i++) {
+      //alert('os.v:'+os[i].value);
+      idx=getSubjIndex($(os[i]).attr('my-data'));
+      //alert('a:'+a);//
+      if(a_subj0[idx][3]==0) {
+        if(a_subj0[idx][track1]>=2) {
+          sum1+=+a_subj[idx][2];
+        }
+        if(track2!=0) {
+          if(a_subj0[idx][track2]>=2) {
+            sum2+=+a_subj[idx][2];
+            if(a_subj0[idx][track2]>=2) {
+              dupsum+=+a_subj[idx][2];
+            }
+          }
+        }
+      }
+    }
+  $("#majorcredit_"+n).text(sum1+sum2-dupsum);
+  var sumArray=[sum1, sum2, dupsum];
+  return sumArray;
+}
+
+function sumAllMajor() {
+  var sum1=0, sum2=0, dupsum=0, i;
+  for(i=1;i<13;i++){
+    sum1+=sumMajor(i)[0];
+    sum2+=sumMajor(i)[1];
+    dupsum+=sumMajor(i)[2];
+  }
+  var s1, s2, s3;
+  var track1, track2;
+  track2 = checkTrack()[1];
+  s1=sum1+"/27";
+  if(track2>0){
+    s2=sum2+"/27";
+    s3=dupsum+"/27";
+  }
+  $("#track1credit").text(s1);
+  $("#track2credit").text(s2);
+  $("#dupcredit").text(s3);
+}
+
+
 
 function sumAllCredit() {
   var sum=0, i;
@@ -498,6 +609,7 @@ $(function() {
 // drawSubj();
 // drawCboxs();
  getData();//
+ 
 
  $(".cbox ul").sortable();
 
@@ -581,6 +693,11 @@ $(function() {
 </td><td style="text-align:right;">
   <div style="text-align:right;">수강 학점(20학번): <span id="allcredit1">0</span>/134</div>
   <div style="text-align:right;">수강 학점(21학번 이후): <span id="allcredit2">0</span>/130</div>
+  <div>
+    <span id="track1name"></span><span id="track1credit"></span><br>
+    <span id="track2name"></span><span id="track2credit"></span><br>
+    <span id="duplicated"></span><span id="dupcredit"></span>
+  </div>
 </td></tr></table>
  <table border="0" style="border-top:2px dotted #777;margin-top:8px;"><tr><td valign="top" style="vertical-align:top;border-right:2px dotted #777;padding:6px;">
 
