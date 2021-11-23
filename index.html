@@ -347,7 +347,7 @@ function drawCbox1(n) { //n:학년/학기 구분값
   s+='<div class="cbox" id="cbox_'+n+'"><h4>'+Math.floor((n-1)/2+1)+'학년 '+((n%2==1)?1:2)+'학기 <button onclick="addSubj('+n+')">추가+</button><!--button onclick="delSubj('+n+')">삭제-</button--></h4>';
   s+='<ul></ul>';
   s+='<div style="text-align:right">해당학기 수강학점: <span id="credit_'+n+'">0</span>/21&nbsp;&nbsp;&nbsp;</div>';
-  s+='<div style="text-align:right">해당학기 수강전공학점: <span id="majorcredit_'+n+'">0</span>&nbsp;&nbsp;&nbsp;</div>'
+  s+='<div style="text-align:right">해당학기 수강 전공학점: <span id="majorcredit_'+n+'">0</span>&nbsp;&nbsp;&nbsp;</div>'
   s+='</div>';
   return s;
 }
@@ -473,7 +473,7 @@ function checkTrack() {
       $("#track2name").text("화학공학트랙 수강학점: ");
     }
     $("#track2credit").text("0/27");
-    $("#duplicated").text("중복된 학점: ");
+    $("#duplicated").text("트랙 간 중복된 학점: ");
     $("#dupcredit").text("0/27");
   
   }
