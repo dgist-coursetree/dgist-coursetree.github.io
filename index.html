@@ -505,13 +505,21 @@ $(function() {
 
 </script>
 
+<table border="0" width="100%"><tr><td>
+  <h1>DGIST CourseTree Project</h1>
+  <h4>모바일 환경에선 사용이 불편할 수 있습니다.</h4>
+  <h4>크롬이 아닌 다른 브라우저에서는 사용이 불편할 수 있습니다.</h4>
+</td><td style='text-align:right;'>
+  <br>
+  <a href='https://github.com/dgist-coursetree/dgist-coursetree.github.io/' target='_blank'>Github Repository 보기</a>
+  <div style='text-align:right'>문의는 다음 연락처로 해주세요: prkhnyng@dgist.ac.kr (기초학부 박한영)</div>
+  <div style='text-align:right'>Last Updated: 11/24, 2021</div>
+</td></tr>
 
-<h1>DGIST CourseTree Project</h1>
-<h4>모바일 환경에선 사용이 불편할 수 있습니다.</h4>
-<h4>크롬이 아닌 다른 브라우저에서는 사용이 불편할 수 있습니다.</h4>
-<a href='https://github.com/dgist-coursetree/dgist-coursetree.github.io/' target='_blank'>Github Repository 보기</a>
-<h3 style='text-align:right'>문의는 다음 연락처로 해주세요: prkhnyng@dgist.ac.kr (기초학부 박한영)</h3>
-<h3 style='text-align:right'>Last Updated: 11/24, 2021</h3>
+
+
+</table>
+
 
 
 <form name="f1" onsubmit="return false">
@@ -559,7 +567,8 @@ $(function() {
 <!--/step_2-->
 
 <div id="step_3" style="display:none;">
- <h3>학기별 과목 담기</h3>
+ <table border="0" width="100%"><tr><td>
+  <h3>학기별 과목 담기</h3>
  <div style="font-size:12px;">
   과목담기: 좌측에서 과목 선택후 우측 원하는 학기에 [추가]버튼 클릭<br/>
   과목삭제: 원하는 학기의 과목을 선택후 [삭제]버튼 클릭
@@ -569,7 +578,10 @@ $(function() {
   권장: DGIST 교육과정에 명시된 이수 권장 과목<br>
   추천: 선수과목, 전공필수 과목과의 연관성에 의해 선정했으나 필수는 아닌 추천과목
  </div>
- 
+</td><td style="text-align:right;">
+  <div style="text-align:right;">수강 학점(20학번): <span id="allcredit1">0</span>/134</div>
+  <div style="text-align:right;">수강 학점(21학번 이후): <span id="allcredit2">0</span>/130</div>
+</td></tr></table>
  <table border="0" style="border-top:2px dotted #777;margin-top:8px;"><tr><td valign="top" style="vertical-align:top;border-right:2px dotted #777;padding:6px;">
 
  <div class="selbox1" style="overflow:scroll;height:700px;"><!--과목목록-->
@@ -632,9 +644,9 @@ $(function() {
  </td><td style="vertical-align:top;padding:6px;">
 
   <h3>학기별 수강과목</h3>
+
   <div id="cbox_a"></div>
-  <div style="text-align:right;">수강 학점(20학번): <span id="allcredit1">0</span>/134</div>
-  <div style="text-align:right;">수강 학점(21학번 이후): <span id="allcredit2">0</span>/130</div>
+
  </td></tr></table>
 
  <button onclick="saveData()">저장</button>
