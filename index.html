@@ -496,7 +496,7 @@ function sumMajor(n) {
         if(track2!=0) {
           if(a_subj0[idx][track2]>=2) {
             sum2+=+a_subj[idx][2];
-            if(a_subj0[idx][track2]>=2) {
+            if(a_subj0[idx][track1]>=2) {
               dupsum+=+a_subj[idx][2];
             }
           }
@@ -625,7 +625,7 @@ $(function() {
   <br>
   <a href='https://github.com/dgist-coursetree/dgist-coursetree.github.io/' target='_blank'>Github Repository 보기</a>
   <div style='text-align:right'>문의는 다음 연락처로 해주세요: prkhnyng@dgist.ac.kr (기초학부 박한영)</div>
-  <div style='text-align:right'>Last Updated: 11/24, 2021</div>
+  <div style='text-align:right'>Last Updated: 11/26, 2021</div>
 </td></tr>
 
 
@@ -704,10 +704,16 @@ $(function() {
  <div class="selbox1" style="overflow:scroll;height:700px;"><!--과목목록-->
   <h3>과목목록</h3>
 
+  <h4>비전공 필수과목</h4>
+  <select id="nonMajorRequired" name="sel_8" size="10"></select>  
+
   <h4>기초과학</h4>
   <h6>6학점 이상 필수 이수</h6>
   <p style="font-size:11px;">전자기학: 필수 - 물리학, 전자공학 | 추천 - 기계공학, 재료공학, 화학공학<br>일반화학 II: 필수 - 화학, 재료공학 | 추천 - 화학공학<br>일반생물학 II: 필수 - 생명과학</p>
   <select id="science" name="sel_1" size="10"></select>  
+
+  <h4>비전공 선택과목</h4>
+  <select id="nonMajorSelective" name="sel_9" size="10"></select>
 
   <h4>기초공학</h4>
   <h6>3학점 이상 필수 이수</h6>
@@ -735,11 +741,7 @@ $(function() {
   <h6>선택한 전공에 따라 변동됩니다.</h6>
   <select id="selectiveCourse" name="sel_7" size="10"></select>  
 
-  <h4>비전공 필수과목</h4>
-  <select id="nonMajorRequired" name="sel_8" size="10"></select>  
-
-  <h4>비전공 선택과목</h4>
-  <select id="nonMajorSelective" name="sel_9" size="10"></select>  
+  
 
   <h4>비트랙</h4>
   <h6>6학점 이상 필수 이수</h6>
