@@ -549,19 +549,72 @@ function saveData() {
     var o=$('ul',os[i]).children();//$(os[i],'option');
     s+='g'+(i+1)+':"';
     for(j=0;j<o.length;j++) {
-      s+='|'+o[j].attr('my-data');//value;
+      if(j==0){
+        s+=$(o[j]).attr('my-data');
+      } else {
+        s+='|'+$(o[j]).attr('my-data');//value;
+      }
+      
     }
     s+='",';
   }
   s+='tmp:"" }';
-  //alert('s:'+s);// 3600*24
+  alert('s:'+s);// 3600*24
   document.cookie=encodeURIComponent('gdata')+'='+encodeURIComponent(s)+'max-age='+(60*60*24*365)+';path=/;';
-  //alert('ck:'+document.cookie);//
-  alert("저장완료")
+  // alert('ck:'+document.cookie);//
+  // alert("저장완료")
+  // eval("var d="+s);
+  // alert(d.g1);
+  // var data_g1 = d.g1.split("|");
+  // alert(data_g1);
 }
 
 function getData() {
   var s=decodeURIComponent(document.cookie);
+  eval("var d="+s);
+  var data_g1 = d.g1.split("|");
+  var data_g2 = d.g2.split("|");
+  var data_g3 = d.g3.split("|");
+  var data_g4 = d.g4.split("|");
+  var data_g5 = d.g5.split("|");
+  var data_g6 = d.g6.split("|");
+  var data_g7 = d.g7.split("|");
+  var data_g8 = d.g8.split("|");
+  var data_g9 = d.g9.split("|");
+  var data_g10 = d.g10.split("|");
+  var data_g11 = d.g11.split("|");
+  var data_g12 = d.g12.split("|");
+  data_arr = [data_g1, data_g2, data_g3, data_g4, data_g5, data_g6, data_g7, data_g8, data_g9, data_g10, data_g11, data_g12];
+  var i, data_arr_length = data_arr.length;
+  for(i=0;i<data_arr_length;i++){
+    var j, idx, temp;
+    for(j=0;j<data_arr[i].length;j++) {
+      temp = data_arr[i][j];
+      //
+      var o=$('.selbox1 select').val(temp);
+      if(idx<0) return;
+      addSubj(i+1);
+
+      // $('#cbox_'+n+' ul').append('<li my-data="'+o.val()+'"><span onclick="delSubj(this,'+n+')">X</span>'+o.text()+'</li>');
+      // o.attr("disabled","disabled").prop("selected",false);
+      sumCredit(n);
+      sumMajor(n);
+      sumAllCredit();
+      sumAllMajor();
+    }
+  }
+  
+
+
+  
+
+  // var n;
+  // for(n=1;n<12;n++) {
+  //   sumCredit(n);
+  //   sumMajor(n);
+  // }
+  // sumAllCredit();
+  // sumAllMajor();
   //if(!s) return;
   //alert('s:'+s);
 }
