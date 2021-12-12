@@ -573,8 +573,13 @@ function saveData() {
 
 function getData() {
   var s=decodeURIComponent(document.cookie);
+  if(s=='' || s==null) {
+    alert('저장된 데이터가 없습니다');
+    return;
+  }
   s = s.split("max-age")[0];
   // alert(s);
+  
 
   eval("var d="+s);
   var data_g1 = d.g1.split("|");
@@ -671,7 +676,7 @@ $(function() {
   <br>
   <a href='https://github.com/dgist-coursetree/dgist-coursetree.github.io/' target='_blank'>Github Repository 보기</a>
   <div style='text-align:right'>문의는 다음 연락처로 해주세요: prkhnyng@dgist.ac.kr (기초학부 박한영)</div>
-  <div style='text-align:right'>Last Updated: 12/12, 2021</div>
+  <div style='text-align:right'>Last Updated: 12/12, 2021 - test</div>
 </td></tr>
 
 
