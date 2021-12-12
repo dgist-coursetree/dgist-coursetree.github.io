@@ -573,7 +573,7 @@ function saveData() {
 function getData() {
   var s=decodeURIComponent(document.cookie);
   s = s.split("max-age")[0];
-  alert(s);
+  // alert(s);
 
   eval("var d="+s);
   var data_g1 = d.g1.split("|");
