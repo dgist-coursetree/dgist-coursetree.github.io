@@ -572,32 +572,31 @@ function saveData() {
 
 function getData() {
   var s=decodeURIComponent(document.cookie);
-//   eval("var d="+s);
-  alert(s);
-//   var data_g1 = d.g1.split("|");
-//   var data_g2 = d.g2.split("|");
-//   var data_g3 = d.g3.split("|");
-//   var data_g4 = d.g4.split("|");
-//   var data_g5 = d.g5.split("|");
-//   var data_g6 = d.g6.split("|");
-//   var data_g7 = d.g7.split("|");
-//   var data_g8 = d.g8.split("|");
-//   var data_g9 = d.g9.split("|");
-//   var data_g10 = d.g10.split("|");
-//   var data_g11 = d.g11.split("|");
-//   var data_g12 = d.g12.split("|");
-//   data_arr = [data_g1, data_g2, data_g3, data_g4, data_g5, data_g6, data_g7, data_g8, data_g9, data_g10, data_g11, data_g12];
-//   var i, data_arr_length = data_arr.length;
-//   for(i=0;i<data_arr_length;i++){
-//     var j, idx, temp;
-//     for(j=1;j<data_arr[i].length;j++) {
-//       temp = data_arr[i][j];
-//       //
-//       $('.selbox1 select').val(temp);
-//       addSubj(i+1);
+  eval("var d="+s);
+  var data_g1 = d.g1.split("|");
+  var data_g2 = d.g2.split("|");
+  var data_g3 = d.g3.split("|");
+  var data_g4 = d.g4.split("|");
+  var data_g5 = d.g5.split("|");
+  var data_g6 = d.g6.split("|");
+  var data_g7 = d.g7.split("|");
+  var data_g8 = d.g8.split("|");
+  var data_g9 = d.g9.split("|");
+  var data_g10 = d.g10.split("|");
+  var data_g11 = d.g11.split("|");
+  var data_g12 = d.g12.split("|");
+  data_arr = [data_g1, data_g2, data_g3, data_g4, data_g5, data_g6, data_g7, data_g8, data_g9, data_g10, data_g11, data_g12];
+  var i, data_arr_length = data_arr.length;
+  for(i=0;i<data_arr_length;i++){
+    var j, idx, temp;
+    for(j=1;j<data_arr[i].length;j++) {
+      temp = data_arr[i][j];
+      //
+      $('.selbox1 select').val(temp);
+      addSubj(i+1);
 
-//     }
-//   }
+    }
+  }
   
 
 
