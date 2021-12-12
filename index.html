@@ -573,6 +573,7 @@ function saveData() {
 function getData() {
   var s=decodeURIComponent(document.cookie);
   eval("var d="+s);
+  alert(s);
   var data_g1 = d.g1.split("|");
   var data_g2 = d.g2.split("|");
   var data_g3 = d.g3.split("|");
