@@ -559,10 +559,11 @@ function saveData() {
     s+='",';
   }
   s+='tmp:"" }';
-  alert('s:'+s);// 3600*24
+  // alert('s:'+s);// 3600*24
   document.cookie=encodeURIComponent('gdata')+'='+encodeURIComponent(s)+'max-age='+(60*60*24*365)+';path=/;';
   // alert('ck:'+document.cookie);//
-  // alert("저장완료")
+  // console.log(s);
+  alert("저장완료")
   // eval("var d="+s);
   // alert(d.g1);
   // var data_g1 = d.g1.split("|");
@@ -588,19 +589,12 @@ function getData() {
   var i, data_arr_length = data_arr.length;
   for(i=0;i<data_arr_length;i++){
     var j, idx, temp;
-    for(j=0;j<data_arr[i].length;j++) {
+    for(j=1;j<data_arr[i].length;j++) {
       temp = data_arr[i][j];
       //
-      var o=$('.selbox1 select').val(temp);
-      if(idx<0) return;
+      $('.selbox1 select').val(temp);
       addSubj(i+1);
 
-      // $('#cbox_'+n+' ul').append('<li my-data="'+o.val()+'"><span onclick="delSubj(this,'+n+')">X</span>'+o.text()+'</li>');
-      // o.attr("disabled","disabled").prop("selected",false);
-      // sumCredit(i);
-      // sumMajor(i);
-      // sumAllCredit();
-      // sumAllMajor();
     }
   }
   
@@ -661,7 +655,7 @@ $(function() {
  cvtData();
 // drawSubj();
 // drawCboxs();
- getData();//
+//  getData();//
  
 
  $(".cbox ul").sortable();
