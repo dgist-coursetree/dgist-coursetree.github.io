@@ -591,8 +591,11 @@ function getData() {
   var i, data_arr_length = data_arr.length;
   for(i=0;i<data_arr_length;i++){
     var j, idx, temp;
-    for(j=1;j<data_arr[i].length;j++) {
+    for(j=0;j<data_arr[i].length;j++) {
       temp = data_arr[i][j];
+      if(temp==null || temp=='') {
+        continue;
+      }
       //
       $('.selbox1 select').val(temp);
       addSubj(i+1);
@@ -666,7 +669,7 @@ $(function() {
   <br>
   <a href='https://github.com/dgist-coursetree/dgist-coursetree.github.io/' target='_blank'>Github Repository 보기</a>
   <div style='text-align:right'>문의는 다음 연락처로 해주세요: prkhnyng@dgist.ac.kr (기초학부 박한영)</div>
-  <div style='text-align:right'>Last Updated: 12/12, 2021, testtest</div>
+  <div style='text-align:right'>Last Updated: 12/12, 2021, testtesttest</div>
 </td></tr>
 
 
